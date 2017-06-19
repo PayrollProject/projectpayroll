@@ -1,0 +1,239 @@
+<div class=" login">
+    <!-- BEGIN LOGO -->
+    <div class="logo">
+        <a href="index.html">
+            <img src="themeassets/pages/img/logo-big.png" alt="" /> </a>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="content">
+            <!-- REGISTRATION FORM HEADER BEGIN-->
+            <h3>Register</h3>
+            <h4 style="text-align: center;"><strong> Time tracking you can count on. </strong></h4>
+            <p style="font-size: 12px;padding-left: 35px;">Automated Time Management. No hidden fees. Friendly setup. Plus, your first month is free.</p>
+            <!-- REGISTRATION FORM HEADER END -->
+            <!-- PORTLET BODY START -->
+            <div class="portlet-body">
+                <!-- TABS HEADER START -->
+                <ul class="nav nav-tabs">
+                    <li class="active" style="width:50%">
+                        <a href="#tab_1_1" data-toggle="tab"> I'M AN OWNER </a>
+                    </li>
+                    <li style="width:50%">
+                        <a href="#tab_1_2" data-toggle="tab"> I'M AN EMPLOYEER </a>
+                    </li>
+                </ul>
+                <!-- TABS HEADER END -->
+                <!-- TABS BODY START -->
+                <div class="tab-content">
+                    <!-- OWNER TAB FORM START -->
+                    <div class="tab-pane fade active in" id="tab_1_1">
+                        <!-- BEGIN REGISTRATION FORM OWNER -->
+                        <form (ngSubmit)="registerOwner()" #f="ngForm" class="register-form" style="display: block;" id="owner-form">
+                            <input type="hidden" name="account_type" value="1" />
+                            <input type="hidden" name="username" id="username" />
+                            <!-- Company Input Begin --> 
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !companyname.valid }">
+                                <label for="companyname" class="control-label visible-ie8 visible-ie9">Company</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-font"></i>
+                                    <input [(ngModel)]="regOwnerData.companyname" #companyname="ngModel" class="form-control placeholder-no-fix" type="text" placeholder="Company" name="companyname" required/> 
+                                </div>
+                                <div *ngIf="f.submitted && !companyname.valid" class="help-block">Company Name  is required</div>
+                            </div>
+                            <!-- Company Input End -->
+                            <!-- Full Name Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fullname.valid }">
+                                <label for="fullname" class="control-label visible-ie8 visible-ie9">Full Name</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-font"></i>
+                                    <input [(ngModel)]="regOwnerData.fullname" #fullname="ngModel" class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="fullname" required /> 
+                                </div>
+                                <div *ngIf="f.submitted && !fullname.valid" class="help-block">Fullname is required</div>
+                            </div>
+                            <!-- Full Name Input End -->
+                            <!-- Email Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                                <label for="email" class="control-label visible-ie8 visible-ie9">Email</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-envelope"></i>
+                                    <input [(ngModel)]="regOwnerData.email" #email="ngModel" class="form-control placeholder-no-fix" id="email" type="email" placeholder="Email" name="email" required /> 
+                                    <span id="email_err"></span>
+                                </div>
+                                <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                            </div>
+                            
+                            <!-- Email Input End -->
+                            <!-- Phone Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+                                <label for="phone" class="control-label visible-ie8 visible-ie9">Phone</label>
+                                <div class="input-icon">
+                                    <i class="icon-mobile-phone icon-2"></i>
+                                    <input [(ngModel)]="regOwnerData.phone" #phone="ngModel"  class="form-control placeholder-no-fix" type="text" placeholder="Phone" name="phone" /> 
+                                </div>
+                            </div>
+                            <!-- Phone Input End -->
+                            <!-- Password Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                <label for="password" class="control-label visible-ie8 visible-ie9">Password</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-lock"></i>
+                                    <input [(ngModel)]="regOwnerData.password" #password="ngModel" class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password" required /> </div>
+                                    <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                            </div>
+                            <!-- Password Input End -->
+                            <!-- Confirm Password Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !rpassword.valid }">
+                                <label for="rpassword" class="control-label visible-ie8 visible-ie9">Confirm Password</label>
+                                <div class="controls">
+                                    <div class="input-icon">
+                                        <i class="fa fa-check"></i>
+                                        <input [(ngModel)]="regOwnerData.rpassword" #rpassword="ngModel" class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Confirm Password" name="rpassword" required/> </div>
+                                </div>
+                                <div *ngIf="regOwnerData.password!=regOwnerData.rpassword" class="help-block">Confirm Password should match with Password</div>
+                            </div>
+                            <!-- Confirm Password Input End -->
+                            <!-- Industry Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !industry.valid }">
+                                <label for="industry" class="control-label visible-ie8 visible-ie9"></label>
+                                <div class="controls">
+                                    <div class="input-icon">
+                                        <i class="fa fa-check"></i>
+                                        <select [(ngModel)]="regOwnerData.industry" #industry="ngModel" name="industry" class="form-control form-control-list" placeholder="Industry" required>
+                                            <option>Industry</option>
+                                            <option value="Landscaping and Lawn Care">Landscaping and Lawn Care</option>
+                                            <option value="Construction, Contracting and Plumbing">Construction, Contracting and Plumbing</option>
+                                            <option value="Cleaning Services">Cleaning Services</option>
+                                            <option value="Restaurants">Restaurants</option>
+                                            <option value="Staffing and Event Planning">Staffing and Event Planning</option>
+                                            <option value="Healthcare">Healthcare</option>
+                                            <option value="Trucking, Towing and Transportation">Trucking, Towing and Transportation</option>
+                                            <option value="Education and Non-Profits">Education and Non-Profits</option>
+                                            <option value="Technology and IT Services">Technology and IT Services</option>
+                                            <option value="Real Estate and Property Management">Real Estate and Property Management</option>
+                                            <option value="Financial and Legal Services">Financial and Legal Services</option>
+                                            <option value="Retail">Retail</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div *ngIf="f.submitted && !industry.valid" class="help-block">Industry is required</div>
+                            </div>
+                            <!-- Industry Input End -->
+                            <!-- Company Size Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !companysize.valid }">
+                                <label for="companysize" class="control-label visible-ie8 visible-ie9"></label>
+                                <div class="controls">
+                                    <div class="input-icon">
+                                        <i class="fa fa-check"></i>
+                                        <select [(ngModel)]="regOwnerData.companysize" #companysize="ngModel" name="companysize" class="form-control form-control-list" placeholder="Company Size" required>
+                                            <option>Company Size</option>
+                                            <option value="1 - 10 Employees">1 - 10 Employees</option>
+                                            <option value="11 - 50 Employees">11 - 50 Employees</option>
+                                            <option value="51 - 200 Employees">51 - 200 Employees</option>
+                                            <option value="201 - 10,000+ Employees">201 - 10,000+ Employees</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div *ngIf="f.submitted && !companysize.valid" class="help-block">Company Size is required</div>
+                            </div>
+                            <!-- Company Size Input End -->
+                            <!-- Role Input Begin -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !role.valid }">
+                                <label for="role" class="control-label visible-ie8 visible-ie9">Role</label>
+                                <div class="controls">
+                                    <div class="input-icon">
+                                        <i class="fa fa-check"></i>
+                                        <input [(ngModel)]="regOwnerData.role" #role="ngModel" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="What is your role?" name="role" required /> </div>
+                                </div>
+                                <div *ngIf="f.submitted && !role.valid" class="help-block">Role is required</div>
+                            </div>
+                            <!-- Role Input End -->
+                            <!-- Continue Button Begin -->
+                            <div class="form-actions" style="padding-top:0;">
+                                <button type="submit" id="owner-register-submit-btn" class="btn green pull-right" style="width:100%"> Continue </button>
+                            </div>
+                            <!-- Continue Button End -->
+                            <!-- Terms & Conditions Begin -->
+                            <div class="form-group" style="font-size: 12px;">
+                                By clicking "Continue" you accept our <a href="javascript:;" id="terms-btn">Terms & Conditions </a>
+                                <span></span>
+                                <div id="register_tnc_error"> </div>
+                            </div>
+                            <!-- Terms and Conditions End -->
+                            <!-- Divider Start -->
+                            <div class="form-group" style="font-size: 12px;">
+                                <hr/>
+                            </div>
+                            <!-- Divider End -->
+                            <!-- Sign in message Start -->
+                            <div class="form-group" style="font-size: 12px;text-align: center;">
+                                Already have an account? <a href="/login">Sign in</a>
+                                <span></span>
+                                <div id="register_tnc_error"> </div>
+                            </div>
+                            <!-- Sign in message End -->
+                            <!-- Cancel Button Start -->
+                            <div class="form-actions">
+                                <a id="register-back-btn" href="/login" class="btn grey-salsa btn-outline"> Cancel </a>
+                                <!-- <button type="submit" id="register-submit-btn" class="btn green pull-right"> Continue </button> -->
+                            </div>
+                            <!-- Cancel Button End -->
+                        </form>
+                        <!-- END REGISTRATION FORM OWNER -->
+                    </div>
+                    <!-- OWNER TAB FORM END -->
+
+                    <div class="tab-pane fade" id="tab_1_2">
+                        <form (ngSubmit)="f.form.valid && registerEmployee()" #f="ngForm" class="register-form" style="display: block;" id="employee-form">
+                            <!-- For Employee Account value="2" -->
+                            <input type="hidden" name="account_type" value="2" id="employee-account-type"/>
+                            <!-- INVITATION CODE FIELD START -->
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !employeeInvitation.valid }">
+                                <label class="control-label visible-ie8 visible-ie9">Invitation Code</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-font"></i>
+                                    <input [(ngModel)]="regEmpData.employeeInvitation" #employeeInvitation="ngModel"  class="form-control placeholder-no-fix" type="text" placeholder="Enter Invitation Code" name="employeeInvitation" id="employee-invitation-code" required /> 
+                                </div>
+                                <div *ngIf="f.submitted && !employeeInvitation.valid" class="help-block">Employee Invitation Code is required</div>
+                            </div>
+                            <!-- INVITATION CODE FIELD END -->
+                            <!-- Continue Button Begin -->
+                            <div class="form-actions" style="padding-top:0;">
+                                <button type="submit" id="employee-register-submit-btn" class="btn green pull-right" style="width:100%"> Continue </button>
+                                <!-- <a href="javascript:void(0);" id="register-submit-btn" class="btn green pull-right" style="width:100%"> Continue </a> -->
+                            </div>
+                            <!-- Continue Button End -->
+                            <!-- Terms & Conditions Begin -->
+                            <div class="form-group" style="font-size: 12px;">
+                                By clicking "Continue" you accept our <a href="javascript:;">Terms & Conditions </a>
+                                <span></span>
+                                <div id="register_tnc_error"> </div>
+                            </div>
+                            <!-- Terms and Conditions End -->
+                            <!-- Divider Start -->
+                            <div class="form-group" style="font-size: 12px;">
+                                <hr/>
+                            </div>
+                            <!-- Divider End -->
+                            <!-- Sign in message Start -->
+                            <div class="form-group" style="font-size: 12px;text-align: center;">
+                                Already have an account? <a href="/login">Sign in</a>
+                                <span></span>
+                                <div id="register_tnc_error"> </div>
+                            </div>
+                            <!-- Sign in message End -->
+                            <div class="form-actions">
+                                <a id="register-back-btn" href="/login" class="btn grey-salsa btn-outline"> Cancel </a>
+                                <!-- <button type="submit" id="register-submit-btn" class="btn green pull-right"> Continue </button> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- TABS BODY END -->
+            </div>
+            <!-- PORTLET BODY END -->
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
