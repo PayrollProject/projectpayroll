@@ -10,4 +10,16 @@ import { AlertService, AuthenticationService, UserService } from '../_services/i
 
 export class EmployeeComponent implements OnInit {
 
+constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService,
+        private userService: UserService,
+        private alertService: AlertService) { }
+
+    ngOnInit() {
+
+    }
+
+
 }

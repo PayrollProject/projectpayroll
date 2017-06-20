@@ -16,4 +16,5 @@
     resettoken: string;
     role: string;
     employeeInvitation : string;
+    lastcheckin : string;
 }
